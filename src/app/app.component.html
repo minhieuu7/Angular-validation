@@ -1,0 +1,45 @@
+<form [formGroup]="loginF" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="hoten">Họ tên</label>
+    <input type="text" class="form-control" formControlName="hoten" id="hoten">
+    <div *ngIf="isControlInvalid('hoten')">
+      <pre style="color: red" *ngIf="loginF.get('hoten')?.hasError('required')">Họ tên không được để trống!</pre>
+      <pre style="color: red" *ngIf="loginF.get('hoten')?.hasError('maxlength')">Họ tên không quá 25 ký tự!</pre>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="diachi">Địa chỉ</label>
+    <input type="text" class="form-control" formControlName="diachi" id="diachi">
+  </div>
+
+  <div class="form-group">
+    <label for="sdt">Số điện thoại</label>
+    <input type="text" class="form-control" formControlName="sdt" id="sdt">
+    <div *ngIf="isControlInvalid('sdt')">
+      <pre style="color: red" *ngIf="loginF.get('sdt')?.hasError('required')">Số điện thoại không được để trống!</pre>
+      <pre style="color: red" *ngIf="loginF.get('sdt')?.hasError('pattern')">Số điện thoại không hợp lệ!</pre>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" formControlName="email" id="email">
+    <div *ngIf="isControlInvalid('email')">
+      <pre style="color: red" *ngIf="loginF.get('email')?.hasError('required')">Email không được để trống!</pre>
+      <pre style="color: red" *ngIf="loginF.get('email')?.hasError('email')">Email không hợp lệ!</pre>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="cmnd">CMND</label>
+    <input type="text" class="form-control" formControlName="cmnd" id="cmnd">
+    <div *ngIf="isControlInvalid('cmnd')">
+      <pre style="color: red" *ngIf="loginF.get('cmnd')?.hasError('required')">CMND không được để trống!</pre>
+      <pre style="color: red" *ngIf="loginF.get('cmnd')?.hasError('pattern')">CMND chỉ được nhập số!</pre>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="!isFormValid()">Submit</button>
+  
+</form>
